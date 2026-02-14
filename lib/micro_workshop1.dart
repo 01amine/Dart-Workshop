@@ -24,6 +24,7 @@ void variablesAndTypes() {
   print('is awesome: $combined');
   var score = 99;
   var label = 'Level';
+  dynamic dynavar;
   // score = 'oops';    //can't assign String to int
   print('$label $score');
   final DateTime now = DateTime.now();
@@ -32,6 +33,7 @@ void variablesAndTypes() {
   print('Now: $now');
   print('Uppercased: $uppercased');
   const String appName = 'WorkshopApp';
+  List list = [1, "hello", true];
   const List<int> numbers = [1, 2, 3];
   String nonNullable = 'I always have a value';
   // nonNullable = null; // compile error
@@ -80,14 +82,24 @@ void collections() {
   List<int> combined = [...numbers, ...more];
   print('Spread: $combined');
 
-  bool addBonus = true;
+  bool addBonus = false;
   List<String> menu = [
     'burger',
     'fries',
     if (addBonus) 'milkshake',
     for (var i = 1; i <= 3; i++) 'soda$i',
   ];
+  menu.add("hello");
+  menu.forEach(
+    (element) {
+      print(element);
+    },
+  );
   print('Menu: $menu');
+
+  String? name;
+
+  print(name);
 
   Set<String> tags = {'dart', 'flutter', 'mobile'};
   tags.add('dart');
@@ -103,12 +115,12 @@ void collections() {
   print('Intersection: ${a.intersection(b)}');
   print('Difference a-b: ${a.difference(b)}');
 
-  Map<String, int> scores = {
+  Map<String, dynamic> scores = {
     'amine': 95,
-    'wail': 7,
+    'wail': true,
     'walid': 92,
   };
-  scores['wail']= 90; 
+  scores['wail'] = 90;
   scores.remove('walid');
   scores.forEach((name, score) {
     print('  $name  $score');
@@ -125,9 +137,10 @@ void otherTypes() {
   print('Heart: $heart  Grinning: $grinning');
   Runes r = Runes('Hello \u{1F44B}'); // 👋
   String emoji = '😀';
-  Null nothing = null; 
+  Null nothing = null;
   print('Nothing is: $nothing');
 }
+
 int add(int a, int b) {
   return a + b;
 }
@@ -135,12 +148,14 @@ int add(int a, int b) {
 int multiply(int a, int b) => a * b;
 
 String buildProfile({
-  required String name, 
+  required String name,
   int age = 0,
   String role = 'user',
 }) {
   return '$name (age: $age, role: $role)';
 }
+
+void highOrderFunction(Function func) => 2 + 2;
 
 List<T> myFilter<T>(List<T> list, bool Function(T) predicate) {
   List<T> result = [];
@@ -155,15 +170,15 @@ Function makeMultiplier(int multiplier) {
 }
 
 void functionsDemo() {
-  print('add: ${add(3, 4)}'); 
-  print('multiply: ${multiply(6, 7)}'); 
+  print('add: ${add(3, 4)}');
+  print('multiply: ${multiply(6, 7)}');
   print(buildProfile(name: 'Alice', age: 30, role: 'admin'));
   print(buildProfile(name: 'Bob'));
 
   var subtract = (int a, int b) {
     return a - b;
   };
-  print('subtract: ${subtract(10, 3)}'); 
+  print('subtract: ${subtract(10, 3)}');
 
   List<int> evens = myFilter([1, 2, 3, 4, 5, 6], (n) => n.isEven);
   print('Evens: $evens');
