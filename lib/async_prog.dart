@@ -1,8 +1,8 @@
 import 'dart:async';
 
-Future<void> asyncfun()async{
-    print("printing future1");
-  }
+Future<void> asyncfun() async {
+  print("printing future1");
+}
 
 Stream<int> getintegers() async* {
   print("printing future1");
@@ -20,4 +20,5 @@ void main() {
   Timer(Duration(seconds: 10), () => print("timer1"));
   Future(() => print("print future3")).then((_) => print("then"));
   print("normal2");
+  StreamController strm = StreamController();
 }
